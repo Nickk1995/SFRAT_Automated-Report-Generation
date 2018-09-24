@@ -17,7 +17,9 @@ d <- dataset #Input excel file with a single sheet for now
 cnames <- colnames(d) # Read column names in the input excel file
 
 tryCatch({                                  #Data conversion depending on the type of the input data
-  if("FN" %in% cnames && "IF" %in% cnames && "FT" %in% cnames) {
+  if("FN" %in% cnames && "IF" %in% cnames && "FT" %in% cnames) { #"FN" determiners the number of Failures
+                                                                 #"IF" determines interfailure time vector
+                                                                 #"FT" determines failure time vector
     FT <- d$FT
     IF <- d$IF
     FN <- d$FN
@@ -29,7 +31,8 @@ tryCatch({                                  #Data conversion depending on the ty
     IF <- FT_to_IF(d$FT)
     FT <- d$FT
     FN <- d$FN
-  } else if("T" %in% cnames && "FC" %in% cnames && "CFC" %in% cnames) {
+  } else if("T" %in% cnames && "FC" %in% cnames && "CFC" %in% cnames) { #"FC" determines failure count vector
+                                                                        #"CFC" determines cumulative failure count vector 
     FC <- d$FC
     CFC <- d$CFC
     FT <- FC_to_FT(d$T,d$FC)
